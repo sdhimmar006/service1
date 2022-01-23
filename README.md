@@ -12,7 +12,7 @@ Steps to run in GCP shell:
 10. cd service1
 11. ./mvnw spring-boot:run -Dspring-boot.run.jvmArguments="-Dspring.profiles.active=cloud -Dspring.cloud.gcp.credentials.location=file:///$HOME/service-account.json"
 12. open new tab    
-13. cd ../service2
+13. cd service2
 14. ./mvnw spring-boot:run -Dspring-boot.run.jvmArguments="-Dspring.profiles.active=cloud -Dspring.cloud.gcp.credentials.location=file:///$HOME/service-account.json"
     open new tab
 15. curl http://localhost:8081/service1
