@@ -12,8 +12,6 @@ import org.springframework.web.client.RestTemplate;
 @Configuration
 public class Config {
 
-//    @Value("projid")
-//    String projId;
 
     @Bean
     public RestTemplate restTemplate() {
@@ -25,7 +23,6 @@ public class Config {
     public SpanExporter googleTraceExporter() {
         return TraceExporter.createWithConfiguration(
                 TraceConfiguration.builder()
-//                        .setProjectId(projId)
                         .build()
         );
     }

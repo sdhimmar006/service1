@@ -24,7 +24,7 @@ public class WebController {
     public ResponseEntity<String> getMsg(){
         String url=BASE_URL+"/"+REQ_PATH;
         log.info("came to service1");
-        Thread.sleep(1500);
+        Thread.sleep(50);
         ResponseEntity<String> resp=restTemplate.getForEntity(url,String.class);
         log.info("going back from service1");
         return ResponseEntity.ok("From service1 "+resp.getBody());
