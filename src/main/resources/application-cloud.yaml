@@ -1,0 +1,6 @@
+spring.sleuth
+  scheduled.enabled: false
+  sampler.probability: 1.0
+spring.cloud.gcp
+  logging.enabled: true
+  trace.enabled: true
