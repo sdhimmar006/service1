@@ -19,7 +19,7 @@ public class WebController {
     @Value("${sleep}")
     Integer sleep;
 
-    @Value("baseurl")
+    @Value("${baseurl}")
     String BASE_URL;
 
     private final String REQ_PATH="service2";

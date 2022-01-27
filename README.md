@@ -18,9 +18,10 @@ kubectl create service loadbalancer $APP_NAME --tcp=$SERVICE1_PORT:$SERVICE1_POR
 
 **Update an existing service**
 
-export VERSION=$(($(date +%s%N)/1000000))
+export VERSION=v1
 export APP_NAME=service1
 ./mvnw -DskipTests package
+export GOOGLE_CLOUD_PROJECT=`gcloud config list --format="value(core.project)"`
 ./mvnw -DskipTests com.google.cloud.tools:jib-maven-plugin:build \
 -Dimage=gcr.io/$GOOGLE_CLOUD_PROJECT/$APP_NAME:$VERSION
 kubectl set image deployment/$APP_NAME \
@@ -31,3 +32,15 @@ $APP_NAME=gcr.io/$GOOGLE_CLOUD_PROJECT/$APP_NAME:$VERSION
 chmod +x curl.sh
 export service1=
 ./curl.sh 100 ${service1}
+
+**local run**
+
+gcloud iam service-accounts create guestbook
+export PROJECT_ID=$(gcloud config list --format 'value(core.project)')
+gcloud projects add-iam-policy-binding ${PROJECT_ID} \
+--member serviceAccount:guestbook@${PROJECT_ID}.iam.gserviceaccount.com \
+--role roles/editor
+gcloud iam service-accounts keys create \
+~/service-account.json \
+--iam-account guestbook@${PROJECT_ID}.iam.gserviceaccount.com
+./mvnw spring-boot:run -Dspring-boot.run.jvmArguments="-Dspring.cloud.gcp.credentials.location=file:///$HOME/service-account.json"
