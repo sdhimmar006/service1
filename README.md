@@ -18,7 +18,7 @@ kubectl create service loadbalancer $APP_NAME --tcp=$SERVICE1_PORT:$SERVICE1_POR
 
 **Update an existing service**
 
-export VERSION=v1
+export VERSION=v2
 export APP_NAME=service1
 ./mvnw -DskipTests package
 export GOOGLE_CLOUD_PROJECT=`gcloud config list --format="value(core.project)"`
