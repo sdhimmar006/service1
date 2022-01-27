@@ -24,10 +24,12 @@ public class WebController {
 
     private final String REQ_PATH="service2";
 
+    private final String clientPort="8082";
+
     @GetMapping("/service1")
     @SneakyThrows
     public ResponseEntity<String> getMsg(){
-        String url=BASE_URL+"/"+REQ_PATH;
+        String url=BASE_URL+":"+clientPort+"/"+REQ_PATH;
         log.info("came to service1");
         Thread.sleep(sleep);
         ResponseEntity<String> resp=restTemplate.getForEntity(url,String.class);
