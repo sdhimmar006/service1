@@ -29,7 +29,7 @@ public class WebController {
     @GetMapping("/service1")
     @SneakyThrows
     public ResponseEntity<String> getMsg(){
-        String url=BASE_URL+":"+clientPort+"/"+REQ_PATH;
+        String url="http://"+BASE_URL+":"+clientPort+"/"+REQ_PATH;
         log.info("came to service1");
         Thread.sleep(sleep);
         ResponseEntity<String> resp=restTemplate.getForEntity(url,String.class);
