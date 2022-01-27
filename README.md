@@ -14,11 +14,13 @@ cd service1
 -Dimage=gcr.io/$GOOGLE_CLOUD_PROJECT/$APP_NAME:$VERSION
 kubectl create deployment $APP_NAME \
 --image=gcr.io/$GOOGLE_CLOUD_PROJECT/$APP_NAME:$VERSION
-kubectl create service loadbalancer1 $APP_NAME --tcp=$SERVICE1_PORT:$SERVICE1_PORT
+kubectl create service loadbalancer $APP_NAME --tcp=$SERVICE1_PORT:$SERVICE1_PORT
 
 **Update an existing service**
 
 export VERSION=$(($(date +%s%N)/1000000))
+export APP_NAME=service1
+./mvnw -DskipTests package
 ./mvnw -DskipTests com.google.cloud.tools:jib-maven-plugin:build \
 -Dimage=gcr.io/$GOOGLE_CLOUD_PROJECT/$APP_NAME:$VERSION
 kubectl set image deployment/$APP_NAME \
