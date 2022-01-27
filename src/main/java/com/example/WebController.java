@@ -16,7 +16,7 @@ public class WebController {
     @Autowired
     RestTemplate restTemplate;
 
-    @Value("sleep")
+    @Value("${sleep}")
     Integer sleep;
 
     @Value("baseurl")

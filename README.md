@@ -8,6 +8,8 @@ export APP_NAME=service1
 export GOOGLE_CLOUD_PROJECT=`gcloud config list --format="value(core.project)"`
 export VERSION=$(($(date +%s%N)/1000000))
 export baseurl=
+cd service1
+./mvnw -DskipTests package
 ./mvnw -DskipTests com.google.cloud.tools:jib-maven-plugin:build \
 -Dimage=gcr.io/$GOOGLE_CLOUD_PROJECT/$APP_NAME:$VERSION
 kubectl create deployment $APP_NAME \
