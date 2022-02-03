@@ -8,7 +8,15 @@ export SERVICE1_PORT=8081
 export APP_NAME=service1
 export GOOGLE_CLOUD_PROJECT=`gcloud config list --format="value(core.project)"`
 export VERSION=$(($(date +%s%N)/1000000))
+```
+
+**Baseurl setup**
+```
 export baseurl=
+```
+
+**Package 1st time**
+```
 cd service1
 ./mvnw -DskipTests package
 ./mvnw -DskipTests com.google.cloud.tools:jib-maven-plugin:build \
